@@ -28,32 +28,37 @@ ul li {
 
 .home-intro {
   width: 100%;
-  height: 100vh; /* Ensure the container takes up the full viewport height */
+  height: calc(100vh - 2rem); /* Ensure the container takes up the full viewport height */
   display: flex;
-  flex-direction: column;
-  justify-content: space-between; /* Space between the items, pushing the last item to the bottom */
-  align-items: center; /* Center items horizontally */
-  position: relative; /* Needed for absolute positioning context */
+}
+
+.home-intro .container .row {
+  height: 100%;
 }
 
 .home-intro .title-wrap {
   position: absolute;
-  top: 50%; /* Center vertically */
-  left: 50%; /* Center horizontally */
-  transform: translate(-50%, -50%); /* Offset to precisely center */
-  width: 25vw; /* Width of the SVG */
-  opacity: 0.8;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-.home-intro .title-info {
-  width: 100%; /* Take the full width to center the text properly */
-  text-align: center; /* Center the text */
-  /* No need for absolute positioning, Flexbox will push it to the bottom */
+.home-intro .row:nth-of-type(2) {
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
 }
 
-.home-intro .title-wrap svg {
-  width: 25vw;
-  opacity: 0.8;
+.home-intro .row:nth-of-type(2) .title-info {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 3rem;
+}
+
+.home-intro .title-wrap #rectangle-svg {
+  width: 20vw;
 }
 
 .fade-bottom-overlay {
