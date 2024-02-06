@@ -1,0 +1,210 @@
+@font-face {
+  font-family: "Thin Lines";
+  src: url(/Fonts/Poppins/Poppins-Bold.ttf);
+  font-weight: 500, 700, 900;
+  font-style: normal;
+  font-display: auto;
+  font-display: swap;
+}
+
+:root {
+  --White: White;
+  --color-dc: 10, 10, 10;
+}
+
+*,
+*::after,
+*::before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  font-family: "Thin Lines", sans-serif;
+  line-height: 1.2;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 16px;
+  background-color: black;
+  color: white;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+li,
+ul,
+ol,
+span,
+strong,
+em {
+  padding: 0;
+  margin: 0;
+  font-style: normal;
+  letter-spacing: normal;
+  font-weight: 500;
+}
+
+li,
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+canvas,
+img,
+video {
+  max-width: 100%;
+  height: auto;
+  box-sizing: border-box;
+}
+
+h2 {
+  font-family: "Thin Lines", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: clamp(1rem, 11vw, 6rem);
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.85);
+  /* text-transform: uppercase; */
+}
+
+h3 {
+  font-family: "Red Hat Display", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 0.7rem;
+  line-height: 1.1;
+  color: var(--White);
+}
+
+h4 {
+  font-family: "Thin Lines", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+  font-size: 1rem;
+  line-height: 1.1;
+  color: var(--White);
+  text-align: center;
+}
+
+h5 {
+  font-family: "Thin Lines", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 0.7rem;
+  line-height: 1.1;
+  color: var(--White);
+}
+
+h6 {
+  font-family: "Thin Lines", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--White);
+}
+
+p {
+  font-family: "Thin Lines", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--White);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.flex-row {
+  display: block;
+  width: 100%;
+  order: 2;
+  position: relative;
+}
+
+.container {
+  position: relative;
+  max-width: 100%;
+  max-width: 100em;
+  margin: 0 auto;
+  padding-left: 25vw;
+  padding-right: 25vw;
+}
+
+section {
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+  position: relative;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh; /* Full height of the viewport */
+  width: 100%; /* Full width of the viewport */
+  overflow: hidden; /* Hide parts of the image that overflow the container */
+}
+
+@media screen and (max-width: 720px) {
+  .container {
+    padding-left: 8vw;
+    padding-right: 8vw;
+  }
+}
+
+.btn {
+  position: relative;
+  border: 0;
+  outline: 0;
+}
+
+.btn .btn-click {
+  cursor: pointer;
+  border: 0;
+  outline: 0;
+  width: 120px;
+  height: 45px;
+  background-color: var(--Verylightgray);
+  border-radius: 2rem;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  transition: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.btn .btn-text {
+  font-family: "Lexend Deca", sans-serif;
+  font-size: 0.8rem;
+  transition: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
