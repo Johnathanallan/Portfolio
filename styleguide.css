@@ -10,6 +10,30 @@
 :root {
   --White: White;
   --color-dc: 10, 10, 10;
+  --color-dark-rgb: 28, 29, 36;
+  --color-dark: rgba(var(--color-dark-rgb), 1);
+
+  --color-border: rgba(var(--color-dark-rgb), 0.35);
+  --color-light-rgb: 247, 247, 255;
+  --color-light: rgba(var(--color-light-rgb), 1);
+  --color-light-tint: #efefff;
+  --color-white-rgb: 255, 255, 255;
+  --color-border-light: rgba(var(--color-white-rgb), 0.45);
+  --container-padding: 3vw;
+  --section-padding: 9vh;
+  --section-padding-small: 3vh;
+  --animation-primary: all 0.5s cubic-bezier(0.7, 0, 0.3, 1);
+
+  --animation-smooth: 0.5s cubic-bezier(1, 0, 0.25, 1);
+  --animation-theme: 0.3s ease-in-out;
+  --animation-nav-smooth: 0.5s cubic-bezier(0.5, 0, 0.25, 1);
+  --animation-cursor: 0.4s cubic-bezier(0.5, 0, 0.25, 1);
+  --animation-bounce: 0.4s cubic-bezier(0.35, 1.5, 0.6, 1);
+  --row-gap: calc(var(--title-size) * 0.3);
+  --col-gap: calc(var(--title-size) * 0.3);
+  --col-gap-small: calc(var(--title-size) * 0.1);
+  --title-size: clamp(5em, 7.5vw, 7.5em);
+  --border-radius: calc(var(--btn-height) * 0.5);
 }
 
 *,
@@ -155,15 +179,15 @@ p {
 .container {
   position: relative;
   max-width: 100%;
-  max-width: 100em;
+  max-width: 100vw;
   margin: 0 auto;
-  padding-left: 25vw;
-  padding-right: 25vw;
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
 }
 
 section {
-  padding-top: 5vh;
-  padding-bottom: 5vh;
+  padding-top: var(--section-padding);
+  padding-bottom: var(--section-padding);
   position: relative;
 }
 
@@ -183,28 +207,131 @@ section {
   }
 }
 
-.btn {
-  position: relative;
-  border: 0;
-  outline: 0;
+.btn input {
+  cursor: pointer;
 }
 
-.btn .btn-click {
+.btn:hover {
+  z-index: 15;
+}
+
+.btn:last-child {
+  margin-bottom: 0;
+}
+
+.btn-click {
   cursor: pointer;
   border: 0;
+  color: var(--primary-dark);
+  background: transparent;
+  overflow: hidden;
+  text-decoration: none;
+  will-change: transform;
   outline: 0;
-  width: 120px;
-  height: 45px;
-  background-color: var(--Verylightgray);
-  border-radius: 2rem;
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  transition: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform: translateZ(0) rotate(0.001deg);
 }
 
-.btn .btn-text {
-  font-family: "Lexend Deca", sans-serif;
-  font-size: 0.8rem;
-  transition: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+.btn-click:hover {
+  cursor: pointer;
+}
+
+.magnetic {
+  pointer-events: auto;
+}
+
+.btn-fill {
+  background: var(--color-blue);
+
+  border-radius: 50%;
+  top: -50%;
+  left: -25%;
+  transform: translate3d(0, -76%, 0);
+  will-change: transform;
+  transition: background-color ease-in-out 0.25s;
+}
+
+.btn-text {
+  z-index: 2;
+  color: var(--color-dark);
+  position: relative;
+  transform: rotate(0.001deg);
+  pointer-events: none;
+  will-change: transform, color;
+}
+
+.btn-click:hover {
+  text-decoration: none;
+}
+
+.btn-link.btn-left-top .btn-click::after {
+  display: none;
+}
+
+.btn-link.btn-left-top .credit {
+  padding-right: 0.21em;
+}
+
+.btn-link.btn-left-top .credit span {
+  position: relative;
+  display: block;
+  transform: translate(0, 0) rotate(0.001deg);
+  transition: var(--animation-primary);
+}
+
+.btn-link.btn-left-top:hover .credit span {
+  transform: translate(0, 0) rotate(360deg);
+}
+
+.btn-link.btn-left-top .cbd {
+  overflow: hidden;
+  position: relative;
+}
+
+.btn-link.btn-left-top .code-by {
+  transform: translateX(0) rotate(0.001deg);
+  position: relative;
+  display: inline-block;
+  transition: var(--animation-primary);
+}
+
+.btn-link.btn-left-top:hover .code-by {
+  transform: translateX(-4.2em) rotate(0.001deg);
+}
+
+.btn-link.btn-left-top .john {
+  transform: translateX(0) rotate(0.001deg);
+  position: relative;
+  display: inline-block;
+  padding-left: 0.2em;
+  padding-right: 0.2em;
+  transition: var(--animation-primary);
+}
+
+.btn-link.btn-left-top:hover .john {
+  padding-right: 2em;
+  transform: translateX(-3.7em) rotate(0.001deg);
+}
+
+.btn-link.btn-left-top .dumke {
+  position: absolute;
+  opacity: 1;
+  padding-left: 3em;
+  transition: var(--animation-primary);
+  top: 0;
+  left: 0;
+  transform: translateX(3.25em);
+  white-space: nowrap;
+}
+
+@media screen and (max-width: 540px) {
+  .btn-link.btn-left-top:hover .credit span {
+    transform: translate(0, 0) rotate(0.001deg);
+  }
+  .btn-link.btn-left-top:hover .code-by {
+    transform: translateX(0) rotate(0.001deg);
+  }
+  .btn-link.btn-left-top:hover .john {
+    padding-right: 0.2em;
+    transform: translateX(0) rotate(0.001deg);
+  }
 }
