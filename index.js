@@ -96,15 +96,6 @@ function initBasicFunctions() {
 
 
 
-// Call this function when the DOM content has loaded
-document.addEventListener("DOMContentLoaded", function() {
-    // Initialize other functions like initLoaderHome(), initTimeZone() as needed
-    initLoaderHome();
-    initMagneticButtons();
-    initTimeZone();
-    initBasicFunctions() 
-});
-
 document.addEventListener("DOMContentLoaded", function() {
     gsap.registerPlugin(ScrollTrigger);
 
@@ -183,3 +174,73 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
 });
+
+
+
+
+// Call this function when the DOM content has loaded
+document.addEventListener("DOMContentLoaded", function() {
+    // Initialize other functions like initLoaderHome(), initTimeZone() as needed
+    initLoaderHome();
+    initMagneticButtons();
+    initTimeZone();
+    initBasicFunctions();
+    initScrolltriggerCheckScroll()
+    
+
+});
+
+/**
+ * Scrolltrigger Scroll Check
+ */
+function initScrolltriggerCheckScroll() {
+	ScrollTrigger.create({
+		start: "top -20%",
+		onUpdate: (self) => {
+			$("main").addClass("scrolled");
+		},
+		onLeaveBack: () => {
+			$("main").removeClass("scrolled");
+		},
+	});
+}
+
+
+
+gsap.registerPlugin(ScrollTrigger);
+
+document.addEventListener("DOMContentLoaded", function() {
+    let scroll = new LocomotiveScroll({
+        el: document.querySelector("[data-scroll-container]"),
+        smooth: true,
+        lerp: 0.075,
+    });
+
+    // Update ScrollTrigger on scroll event
+    scroll.on("scroll", ScrollTrigger.update);
+
+    // Proxy the scroll container
+    ScrollTrigger.scrollerProxy("[data-scroll-container]", {
+        scrollTop(value) {
+            return arguments.length ? scroll.scrollTo(value, 0, 0) : scroll.scroll.instance.scroll.y;
+        },
+        getBoundingClientRect() {
+            return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
+        },
+        pinType: document.querySelector("[data-scroll-container]").style.transform ? "transform" : "fixed",
+    });
+
+    // Refresh ScrollTrigger when resizing window
+    window.addEventListener('resize', () => {
+        scroll.update();
+        ScrollTrigger.refresh();
+    });
+
+    ScrollTrigger.addEventListener("refresh", () => scroll.update());
+
+    // Refresh ScrollTrigger to ensure everything is in sync
+    ScrollTrigger.refresh();
+});
+
+
+ 

@@ -1,7 +1,25 @@
 @font-face {
-  font-family: "Thin Lines";
-  src: url(/Fonts/Poppins/Poppins-Bold.ttf);
-  font-weight: 500, 700, 900;
+  font-family: "Neue";
+  src: url(/Fonts/NeueMontreal-Regular.otf);
+  font-weight: 450;
+  font-style: normal;
+  font-display: auto;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Neue light";
+  src: url(/Fonts/NeueMontreal-Regular.otf);
+  font-weight: 300;
+  font-style: normal;
+  font-display: auto;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Neue bold";
+  src: url(/Fonts/NeueMontreal-Regular.otf);
+  font-weight: 800;
   font-style: normal;
   font-display: auto;
   font-display: swap;
@@ -36,6 +54,49 @@
   --border-radius: calc(var(--btn-height) * 0.5);
 }
 
+@media screen and (max-width: 720px) {
+  :root {
+    --section-padding: 12vh;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  :root {
+    --color-border: rgba(28, 29, 32, 0.225);
+    --color-border-light: rgba(255, 255, 255, 0.225);
+    --container-padding: clamp(1.25em, 4vw, 1.1em);
+    --section-padding: max(2.5em, 12vh);
+  }
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* Chrome, Safari, Opera */
+
+body {
+  -ms-overflow-style: none;
+}
+
+/* IE & Edge */
+
+html {
+  scrollbar-width: none;
+}
+
+::selection {
+  background-color: var(--color-light);
+  color: var(--color-dark);
+  text-shadow: none;
+}
+
+::-moz-selection {
+  background-color: var(--color-light);
+  color: var(--color-dark);
+  text-shadow: none;
+}
+
 *,
 *::after,
 *::before {
@@ -46,7 +107,7 @@
 
 body {
   -webkit-font-smoothing: antialiased;
-  font-family: "Thin Lines", sans-serif;
+  font-family: "Neue", sans-serif;
   line-height: 1.2;
   font-weight: 500;
   font-style: normal;
@@ -84,7 +145,7 @@ em {
   margin: 0;
   font-style: normal;
   letter-spacing: normal;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 li,
@@ -209,10 +270,6 @@ section {
 
 .btn input {
   cursor: pointer;
-}
-
-.btn:hover {
-  z-index: 15;
 }
 
 .btn:last-child {

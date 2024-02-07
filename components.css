@@ -1,3 +1,49 @@
+main {
+  box-sizing: border-box;
+  overflow: hidden;
+  width: 100vw;
+  position: fixed;
+  height: 100%;
+  background: var(--color-white);
+}
+
+.main-wrap::after {
+  display: block;
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 5vh;
+  top: 99%;
+  left: 0;
+  background: var(--color-dark);
+  z-index: -1;
+}
+
+.main-wrap {
+  box-sizing: border-box;
+  width: 100vw;
+  will-change: transform;
+  position: fixed;
+}
+
+main.touch {
+  position: relative;
+  height: auto;
+}
+
+main.touch .main-wrap {
+  position: relative;
+}
+
+@media screen and (max-width: 1024px) {
+  main {
+    position: relative;
+  }
+  .main-wrap {
+    position: relative;
+  }
+}
+
 .shape-round {
   --height-percentage: 11;
   position: absolute;
@@ -60,4 +106,28 @@
 
 .shape-round.shrink {
   transform: scaleY(1);
+}
+
+@media screen and (min-width: 1024px) {
+  .shape-round {
+    padding-top: calc(var(--height-percentage) * 5%);
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .shape-round {
+    padding-top: calc(var(--height-percentage) * 7%);
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .shape-round {
+    padding-top: calc(var(--height-percentage) * 9%);
+  }
+}
+
+@media screen and (max-width: 564px) {
+  .shape-round {
+    padding-top: calc(var(--height-percentage) * 16%);
+  }
 }
