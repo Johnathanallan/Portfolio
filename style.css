@@ -172,6 +172,7 @@
 .home-intro {
   width: 100%;
   height: 100vh; /* Ensure the container takes up the full viewport height */
+  max-height: -webkit-fill-available;
   display: flex;
   z-index: 1;
 }
@@ -267,4 +268,9 @@
 }
 .about-me .flex-col {
   text-align: center;
+}
+
+.solid-bg {
+  background-color: #000; /* Or any color you prefer */
+  transition: background-color 0.3s ease-out; /* Smooth transition for the color change */
 }

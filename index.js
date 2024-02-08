@@ -215,6 +215,7 @@ document.addEventListener("DOMContentLoaded", function() {
         smooth: true,
         lerp: 0.075,
     });
+    
 
     // Update ScrollTrigger on scroll event
     scroll.on("scroll", ScrollTrigger.update);
