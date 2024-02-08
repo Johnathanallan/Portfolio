@@ -177,6 +177,11 @@
   z-index: 1;
 }
 
+.bg-img {
+  height: 100vh;
+  overflow: hidden;
+}
+
 .home-intro .container .row {
   height: 100%;
   display: flex;

@@ -185,8 +185,8 @@ document.addEventListener("DOMContentLoaded", function() {
     initMagneticButtons();
     initTimeZone();
     initBasicFunctions();
-    initScrolltriggerCheckScroll()
-    
+    initScrolltriggerCheckScroll();
+     initScrolltriggerAnimations();
 
 });
 
@@ -242,6 +242,74 @@ document.addEventListener("DOMContentLoaded", function() {
     // Refresh ScrollTrigger to ensure everything is in sync
     ScrollTrigger.refresh();
 });
+
+/**
+ * Scrolltrigger Animations Desktop + Mobile
+ */
+function initScrolltriggerAnimations() {
+
+    // Disable GSAP on Mobile
+    // Source: https://greensock.com/forums/topic/26325-disabling-scrolltrigger-on-mobile-with-mediamatch/
+    ScrollTrigger.matchMedia({
+
+        // Desktop Only Scrolltrigger 
+        "(min-width: 1025px)": function() {
+
+            if (document.querySelector(".bg-img")) {
+                // Scrolltrigger Animation : Example
+                $(".bg-img").each(function(index) {
+                    let triggerElement = $(this);
+                    let targetElement = $(this);
+
+                    let tl = gsap.timeline({
+                        scrollTrigger: {
+                            trigger: triggerElement,
+                            start: "100% 100%",
+                            end: "150% 0%",
+                            scrub: 0,
+                          
+                        }
+                    });
+                    tl.to(targetElement, {
+                        opacity: 0,
+                        ease: "Power3.easeOut"
+                    });
+                });
+            }
+
+        }, // End Desktop Only Scrolltrigger
+
+        // Mobile Only Scrolltrigger
+        "(max-width: 1024px)": function() {
+
+            if (document.querySelector(".example")) {
+                // Scrolltrigger Animation : Example
+                $(".example").each(function(index) {
+                    let triggerElement = $(this);
+                    let targetElement = $(".example");
+
+                    let tl = gsap.timeline({
+                        scrollTrigger: {
+                            trigger: triggerElement,
+                            start: "0% 100%",
+                            end: "100% 0%",
+                            scrub: 0
+                        }
+                    });
+                    tl.to(targetElement, {
+                        rotate: 90,
+                        ease: "none"
+                    });
+                });
+            }
+        } // End Mobile Only Scrolltrigger
+
+
+    }); // End GSAP Matchmedia
+    
+
+}
+
 
 
  
