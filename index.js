@@ -188,7 +188,7 @@ document.addEventListener("DOMContentLoaded", function() {
     initTimeZone();
     initBasicFunctions();
     initScrolltriggerCheckScroll();
-    initScroll();
+    initSmoothScroll();
     initScrolltriggerAnimations();
 });
 
@@ -208,7 +208,7 @@ function initScrolltriggerCheckScroll() {
 	});
 }
 
-function initScroll() {
+function initSmoothScroll() {
     let scroll = new LocomotiveScroll({
         el: document.querySelector("[data-scroll-container]"),
         smooth: true,

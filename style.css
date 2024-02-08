@@ -33,10 +33,14 @@
   transition: transform 0.4s cubic-bezier(0.36, 0, 0.66, 0);
 }
 
+.mobile-nav .link-click {
+  pointer-events: auto;
+}
+
 .mobile-nav .overlay-dark {
   opacity: 0;
   visibility: hidden;
-  transition: var(--animation-smooth);
+  transition: var(--animation-);
   background-color: rgba(var(--color-dark-rgb), 0.9);
 }
 
@@ -157,7 +161,7 @@
   background-color: var(--color-dark);
 }
 
-/*---------------------------- Header ---------------*/
+/*--------------------------------------------------Header --------------------------------------------------*/
 
 .home-intro {
   width: 100%;
@@ -256,7 +260,7 @@
 */
 }
 
-/* --------------------------------- About me --------------------------------------- */
+/* ---------------------------------------------------------- About me --------------------------------------- */
 .about-me {
   overflow: hidden;
   z-index: 1;
