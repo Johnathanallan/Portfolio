@@ -1,7 +1,7 @@
 .nav-bar {
   width: 100%;
-  height: 20px;
-  z-index: 1;
+  height: 30px;
+  z-index: 900;
   color: white;
   position: fixed;
   pointer-events: none;
@@ -87,13 +87,6 @@
 
 /* Nav Links */
 
-.mobile-nav-box nav ul .link .link-click span {
-  color: var(--color-light-tint);
-  font-family: "Axiforma", sans-serif;
-  font-size: min(5vw, 1.5em);
-  font-weight: 400;
-}
-
 .hamburger {
   display: flex;
   gap: 0.25em;
@@ -126,9 +119,6 @@
   fill: white;
 }
 
-.hamburger .btn-floating {
-  z-index: 4;
-}
 .hamburger .bar {
   position: absolute;
   width: 35%;
@@ -273,9 +263,4 @@
 }
 .about-me .flex-col {
   text-align: center;
-}
-
-.solid-bg {
-  background-color: #000; /* Or any color you prefer */
-  transition: background-color 0.3s ease-out; /* Smooth transition for the color change */
 }

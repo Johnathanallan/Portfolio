@@ -29,7 +29,7 @@
   --White: White;
   --color-dc: 10, 10, 10;
   --color-dark-rgb: 28, 29, 36;
-  --color-dark: rgba(var(--color-dark-rgb), 1);
+  --color-dark: #0a0a0a;
 
   --color-border: rgba(var(--color-dark-rgb), 0.35);
   --color-light-rgb: 247, 247, 255;
@@ -112,7 +112,7 @@ body {
   font-weight: 500;
   font-style: normal;
   font-size: 16px;
-  background-color: black;
+  background-color: var(--color-dark);
   color: white;
 }
 

@@ -1,11 +1,3 @@
-function initLoaderHome() {
-  const tl = gsap.timeline();
-  gsap.set("#rectangle", { transformOrigin: "50% 100%", y: 100 });
-  tl.to("#rectangle", { duration: 1, y: 0, ease: "power2.out" });
-  tl.add("scaleAnimation");
-  tl.to("#rectangle-svg", { duration: 1, scale: 2, ease: "ease.out(1, 0.3)" }, "scaleAnimation");
-}
-
 function initTimeZone() {
 	// Time zone
 	// https://stackoverflow.com/questions/39418405/making-a-live-clock-in-javascript/67149791#67149791
@@ -107,6 +99,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Call the animation function on page load
     initLoader();
+    initLoaderHome();
 
     // Animation - First Page Load
     function initLoader() {
@@ -162,7 +155,7 @@ document.addEventListener("DOMContentLoaded", function() {
         );
 
         function staggerSpanH1() {
-            gsap.to("h1 .outer-span span", {
+            gsap.to("once-in", {
                 duration: 0.5,
                 yPercent: 0,
                 rotate: 0,
@@ -173,22 +166,32 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
+    function initLoaderHome() {
+    const tl = gsap.timeline();
+    gsap.set("#rectangle", { transformOrigin: "50% 100%", y: 100 });
+    tl.to("#rectangle", { duration: 1, y: 0, ease: "power2.out" });
+    tl.add("scaleAnimation");
+    tl.to("#rectangle-svg", { duration: 1, scale: 2, ease: "ease.out(1, 0.3)" }, "scaleAnimation");
+    }
+
+
 });
+
 
 
 
 
 // Call this function when the DOM content has loaded
 document.addEventListener("DOMContentLoaded", function() {
-    // Initialize other functions like initLoaderHome(), initTimeZone() as needed
-    initLoaderHome();
+    gsap.registerPlugin(ScrollTrigger);
     initMagneticButtons();
     initTimeZone();
     initBasicFunctions();
     initScrolltriggerCheckScroll();
-     initScrolltriggerAnimations();
-
+    initScroll();
+    initScrolltriggerAnimations();
 });
+
 
 /**
  * Scrolltrigger Scroll Check
@@ -205,22 +208,15 @@ function initScrolltriggerCheckScroll() {
 	});
 }
 
-
-
-gsap.registerPlugin(ScrollTrigger);
-
-document.addEventListener("DOMContentLoaded", function() {
+function initScroll() {
     let scroll = new LocomotiveScroll({
         el: document.querySelector("[data-scroll-container]"),
         smooth: true,
         lerp: 0.075,
     });
-    
 
-    // Update ScrollTrigger on scroll event
     scroll.on("scroll", ScrollTrigger.update);
 
-    // Proxy the scroll container
     ScrollTrigger.scrollerProxy("[data-scroll-container]", {
         scrollTop(value) {
             return arguments.length ? scroll.scrollTo(value, 0, 0) : scroll.scroll.instance.scroll.y;
@@ -231,7 +227,6 @@ document.addEventListener("DOMContentLoaded", function() {
         pinType: document.querySelector("[data-scroll-container]").style.transform ? "transform" : "fixed",
     });
 
-    // Refresh ScrollTrigger when resizing window
     window.addEventListener('resize', () => {
         scroll.update();
         ScrollTrigger.refresh();
@@ -239,77 +234,42 @@ document.addEventListener("DOMContentLoaded", function() {
 
     ScrollTrigger.addEventListener("refresh", () => scroll.update());
 
-    // Refresh ScrollTrigger to ensure everything is in sync
     ScrollTrigger.refresh();
-});
+}
 
 /**
  * Scrolltrigger Animations Desktop + Mobile
  */
 function initScrolltriggerAnimations() {
-
-    // Disable GSAP on Mobile
-    // Source: https://greensock.com/forums/topic/26325-disabling-scrolltrigger-on-mobile-with-mediamatch/
+    // Only apply animations on screens wider than 1024px
     ScrollTrigger.matchMedia({
-
-        // Desktop Only Scrolltrigger 
         "(min-width: 1025px)": function() {
+            // Target each .bg-img element
+            gsap.utils.toArray(".bg-img").forEach(targetElement => {
+                // Directly ensure full opacity at the start to avoid conflicts
+                gsap.set(targetElement, {opacity: 1});
 
-            if (document.querySelector(".bg-img")) {
-                // Scrolltrigger Animation : Example
-                $(".bg-img").each(function(index) {
-                    let triggerElement = $(this);
-                    let targetElement = $(this);
-
-                    let tl = gsap.timeline({
-                        scrollTrigger: {
-                            trigger: triggerElement,
-                            start: "100% 100%",
-                            end: "150% 0%",
-                            scrub: 0,
-                          
-                        }
-                    });
-                    tl.to(targetElement, {
-                        opacity: 0,
-                        ease: "Power3.easeOut"
-                    });
+                // Create the fade-out animation with Power3.easeOut
+                gsap.to(targetElement, {
+                    opacity: 0, // Fade to no opacity
+                    ease: "Power3.easeOut", // Use Power3.easeOut for the transition
+                    scrollTrigger: {
+                        trigger: targetElement,
+                        scroller: "[data-scroll-container]", // Use Locomotive Scroll's container
+                        start: "100% 100%", // Adjust this to control when fading starts
+                        end: "105% 0%", // Adjust this to control when fading ends
+                        scrub: true,
+                        // Uncomment the following line for debugging purposes
+                        
+                    }
                 });
-            }
-
-        }, // End Desktop Only Scrolltrigger
-
-        // Mobile Only Scrolltrigger
-        "(max-width: 1024px)": function() {
-
-            if (document.querySelector(".example")) {
-                // Scrolltrigger Animation : Example
-                $(".example").each(function(index) {
-                    let triggerElement = $(this);
-                    let targetElement = $(".example");
-
-                    let tl = gsap.timeline({
-                        scrollTrigger: {
-                            trigger: triggerElement,
-                            start: "0% 100%",
-                            end: "100% 0%",
-                            scrub: 0
-                        }
-                    });
-                    tl.to(targetElement, {
-                        rotate: 90,
-                        ease: "none"
-                    });
-                });
-            }
-        } // End Mobile Only Scrolltrigger
-
-
-    }); // End GSAP Matchmedia
-    
-
+            });
+        }
+    });
 }
 
-
-
+gsap.config({
+  nullTargetWarn: false,
+  trialWarn: false,
+});
  
