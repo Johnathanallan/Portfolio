@@ -44,7 +44,8 @@
 
   --animation-smooth: 0.5s cubic-bezier(1, 0, 0.25, 1);
   --animation-theme: 0.3s ease-in-out;
-  --animation-nav-smooth: 0.5s cubic-bezier(0.5, 0, 0.25, 1);
+  --animation-nav: 1.1s cubic-bezier(0.5, 0, 0.25, 1);
+  --animation-nav-smooth: 1.2s cubic-bezier(0.5, 0, 0.25, 1);
   --animation-cursor: 0.4s cubic-bezier(0.5, 0, 0.25, 1);
   --animation-bounce: 0.4s cubic-bezier(0.35, 1.5, 0.6, 1);
   --row-gap: calc(var(--title-size) * 0.3);
