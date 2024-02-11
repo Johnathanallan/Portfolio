@@ -287,7 +287,6 @@ function delay(n) {
 }
 
 function initScript() {
-    console.log("initScript called");
     select("body").classList.remove("is-loading");
     initMagneticButtons();
     initBasicFunctions();
@@ -310,10 +309,12 @@ function initBasicFunctions() {
             $('.mobile-nav-box').css('transform', 'translateY(0%) rotate(0.001deg)');
             $('.mobile-nav-behind-layer').css('transform', 'translateY(-10%)'); // Slower movement
              $('.logo span').addClass('logo-open');
+             
         } else {
             $('.mobile-nav-box').css('transform', 'translateY(-110%) rotate(0.001deg)');
             $('.mobile-nav-behind-layer').css('transform', 'translateY(-120%)');
              $('.logo span').removeClass('logo-open');
+             
         }
     });
 
