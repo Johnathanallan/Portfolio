@@ -2,7 +2,6 @@
   width: 100%;
   height: 30px;
   z-index: 900;
-  color: white;
   position: fixed;
   pointer-events: none;
 }
@@ -11,9 +10,7 @@
   position: absolute;
   left: 0;
   top: 0;
-  padding-left: var(--container-padding);
-  padding-top: var(--section-padding-small);
-  padding-bottom: var(--section-padding-small);
+  padding: var(--section-padding-small) 0 var(--section-padding-small) var(--container-padding);
   display: flex;
   align-items: center;
   z-index: 3;
@@ -35,10 +32,12 @@
 
 .mobile-nav {
   position: absolute;
+  top: 0;
+  left: 0;
   transition: transform 0.4s cubic-bezier(0.36, 0, 0.66, 0);
 }
 
-.mobile-nav .link-click {
+.mobile-nav .link {
   pointer-events: auto;
 }
 
@@ -103,7 +102,7 @@
 
 /* Nav Links */
 
-.mobile-nav-box nav ul .link .link-click span {
+.mobile-nav-box nav ul .link span {
   color: var(--color-dark);
   font-family: "Neue bold", sans-serif;
   font-size: clamp(2rem, 5vw, 2.2em);
@@ -182,7 +181,7 @@
   }
 }
 
-/*--------------------------------------------------Header --------------------------------------------------*/
+/*-------------------------------------------------- Header --------------------------------------------------*/
 
 .home-intro {
   width: 100%;
@@ -197,11 +196,6 @@
   overflow: hidden;
 }
 
-.home-intro .container .row {
-  height: 100%;
-  display: flex;
-}
-
 .home-intro .title-wrap {
   position: absolute;
   top: 45%;
@@ -209,18 +203,22 @@
   transform: translate(-50%, -50%);
 }
 
-.home-intro .row:nth-of-type(2) {
-  display: flex;
-  justify-content: flex-end;
+.home-intro .row {
   width: 100%;
+  height: 100%;
+}
+
+.home-intro .row .flex-col {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: flex-end;
 }
 
 .home-intro .title-info {
   display: flex;
   align-items: center;
   gap: 5rem;
-  overflow: hidden;
-  z-index: 0;
 }
 
 .home-intro .title-info span {
@@ -285,6 +283,10 @@
 .about-me {
   overflow: hidden;
   z-index: 1;
+}
+
+.about-me .row {
+  border: 1px solid red;
 }
 .about-me .flex-col {
   text-align: center;

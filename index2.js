@@ -8,7 +8,6 @@ let scroll;
 
     // Call the animation function on page load
     initLoader();
-    initLoaderHome();
     initPageTransitions();
 
     // Animation - First Page Load
@@ -37,7 +36,7 @@ let scroll;
         {
             duration: 0.8,
             rotation: 0,
-            yPercent: -400,
+            yPercent: -300,
             ease: "Expo.easeIn",
             stagger: -0.05,
         },
@@ -78,8 +77,7 @@ let scroll;
             delay: 0.2,
         });
     }
-}
-
+    initLoaderHome();
 
     function initLoaderHome() {
     const tl = gsap.timeline();
@@ -88,6 +86,10 @@ let scroll;
     tl.add("scaleAnimation");
     tl.to("#rectangle-svg", { duration: 1, scale: 2, ease: "ease.out(1, 0.3)" }, "scaleAnimation");
     }
+}
+
+
+    
 
 
 // Animation first load 
@@ -230,16 +232,20 @@ function initPageTransitions() {
 					pageTransitionIn(data.current);
 					await delay(795);
 					data.current.container.remove();
+                    console.log('leave');
 				},
 				async enter(data) {
 					// animate loading screen away
 					pageTransitionOut(data.next);
+                    initLoaderHome();
+                     console.log('enter')
 				},
 				async beforeEnter(data) {
 					ScrollTrigger.getAll().forEach((t) => t.kill());
 					scroll.destroy();
 					initSmoothScroll(data.next.container);
 					initScript();
+                     console.log('enter')
 				},
 			},
 		],
