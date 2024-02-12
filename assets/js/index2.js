@@ -213,7 +213,7 @@ tl.to(".loading-screen", {
 tl.to(
     ".once-in",
     {
-    duration: 2.6,
+    duration: 3.8,
     y: "0vh",
     opacity: 1,
     ease: "Expo.easeOut",

@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Neue";
-  src: url(/Fonts/NeueMontreal-Regular.otf);
+  src: url(/assets/Fonts/NeueMontreal-Regular.otf);
   font-weight: 450;
   font-style: normal;
   font-display: auto;
@@ -9,7 +9,7 @@
 
 @font-face {
   font-family: "Neue light";
-  src: url(/Fonts/NeueMontreal-Regular.otf);
+  src: url(/assets/Fonts/NeueMontreal-Regular.otf);
   font-weight: 300;
   font-style: normal;
   font-display: auto;
@@ -18,7 +18,7 @@
 
 @font-face {
   font-family: "Neue bold";
-  src: url(/Fonts/NeueMontreal-Regular.otf);
+  src: url(/assets/Fonts/NeueMontreal-Regular.otf);
   font-weight: 800;
   font-style: normal;
   font-display: auto;
