@@ -69,23 +69,37 @@ function initMagneticButtons() {
 function initBasicFunctions() {
     // Toggle Navigation
     $('[data-navigation-toggle="toggle"]').click(function() {
-        $(this).toggleClass('active'); // This line toggles the active state of the hamburger
+        $(this).toggleClass('active');
         var isActive = $(this).hasClass('active');
         $('[data-navigation-status]').attr('data-navigation-status', isActive ? 'active' : 'not-active');
+        
+        // Adjust the transform for both layers
+        if(isActive) {
+            $('.mobile-nav-box').css('transform', 'translateY(0%) rotate(0.001deg)');
+            $('.mobile-nav-behind-layer').css('transform', 'translateY(-10%)'); // Slower movement
+             $('.logo span').addClass('logo-open');
+             
+        } else {
+            $('.mobile-nav-box').css('transform', 'translateY(-110%) rotate(0.001deg)');
+            $('.mobile-nav-behind-layer').css('transform', 'translateY(-120%)');
+             $('.logo span').removeClass('logo-open');
+             
+        }
     });
 
-    // Key ESC - Close Navigation
+    // Key ESC - Close Navigation, add similar adjustments for the behind layer
     $(document).keydown(function(e) {
         if (e.keyCode == 27) { // ESC key
             var $hamburger = $('.hamburger');
             if ($hamburger.hasClass('active')) {
                 $hamburger.removeClass('active');
                 $('[data-navigation-status]').attr('data-navigation-status', 'not-active');
+                $('.mobile-nav-box').css('transform', 'translateY(-110%) rotate(0.001deg)');
+                $('.mobile-nav-behind-layer').css('transform', 'translateY(-120%)');
             }
         }
     });
 }
-
 
 
 document.addEventListener("DOMContentLoaded", function() {
