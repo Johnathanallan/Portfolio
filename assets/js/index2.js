@@ -60,9 +60,9 @@ tl.to(
 tl.to(
 		".split-text .span-inner",
 		{
-			duration: 0.8,
+			duration: 0.9,
 			rotation: 0,
-			yPercent: 200,
+			yPercent: 400,
 			ease: "Expo.easeIn",
 			stagger: -0.05,
 		},
@@ -109,7 +109,7 @@ function staggerSpanH1() {
     rotate: 0,
     ease: "Expo.easeOut",
     stagger: -0.075,
-    delay: 0.2,
+    delay: 0.1,
     });
 }
 }
@@ -135,6 +135,7 @@ var tl = gsap.timeline();
 
 tl.set(".loading-screen", {
 		top: "0",
+        duration: 0.001,
 	});
 
 console.log("Transitioning page in...");
@@ -144,8 +145,8 @@ tl.call(function () {
 });
 
 tl.to(".loading-screen", {
-		duration: 0.5,
-		top: "-200%",
+		duration: 0,
+		top: "200%",
 		ease: "Power2.easeOut",
 	});
 
@@ -153,17 +154,12 @@ tl.set("html", {
     cursor: "wait",
 });
 
-tl.to(".loading-screen", {
-    duration: 0.5,
-    top: "0%",
-    ease: "Power2.easeIn",
-});
+
 
 tl.to(".loading-screen", {
-    duration: 0.5,
+    duration: 0,
     top: "-200%",
     ease: "Power2.easeOut",
-    delay: 0.2,
 });
 
 tl.set(
@@ -185,9 +181,6 @@ function pageTransitionOut(scroll) {
 var tl = gsap.timeline();
     console.log('page out');
 
-    tl.set(".loading-screen", {
-		top: "-200%",
-	});
 
 tl.call(function () {
     scroll.start();
@@ -203,24 +196,27 @@ tl.set(".once-in", {
 });
 
 tl.to(".loading-screen", {
-		duration: 0.5,
-		top: "0%",
+    duration: 0.00001,
+		bottom: "0%",
 		ease: "Power2.easeIn",
 	});
 
-
+tl.to(".loading-screen", {
+    duration: 0.00001,
+		ease: "Power2.easeIn",
+	});
 
 tl.to(
     ".once-in",
     {
-    duration: 3.8,
+    duration: 2.8,
     y: "0vh",
     opacity: 1,
     ease: "Expo.easeOut",
     stagger: -0.075,
     onStart: staggerSpanH1,
     },
-    "=-1.6"
+    "=-3.6"
 );
 
 
@@ -278,10 +274,9 @@ barba.init({
         async leave(data) {
         // animate loading screen in
         pageTransitionIn(scroll); // so the scroll object now is going to be defined and passed has ref
-        await delay(0.002);
         data.current.container.remove();
-        gsap.killTweensOf([".loading-screen"]);
-
+        //kill other class
+        // gsap.killTweensOf([".loading-screen"]);
         },
         async enter(data) {
         // animate loading screen away
