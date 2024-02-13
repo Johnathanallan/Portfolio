@@ -30,14 +30,7 @@ tl.set(".once-in", {
     opacity: 0,
 });
 
-tl.to(".once-in", {
-    duration: 0.6,
-    rotation: 0,
-    yPercent: 0,
-    ease: "Expo.easeOut",
-    delay: 0.1,
-    stagger: 0.05,
-});
+
 
 tl.set(".split-text .span-inner", {
 		rotation: 0,
@@ -117,7 +110,7 @@ function staggerSpanH1() {
 function initLoaderHome() {
 const tl = gsap.timeline();
 gsap.set("#rectangle", { transformOrigin: "50% 100%", y: 100 });
-tl.to("#rectangle", {   delay: 1.2, duration: 1.5, y: 0, ease: "power2.out" });
+tl.to("#rectangle", {   delay: 1, duration: 1.5, y: 0, ease: "power2.out" });
 tl.add("scaleAnimation");
 tl.to(
     "#rectangle-svg",
@@ -146,7 +139,7 @@ tl.call(function () {
 
 tl.to(".loading-screen", {
 		duration: 0,
-		top: "200%",
+		top: "-200%",
 		ease: "Power2.easeOut",
 	});
 
