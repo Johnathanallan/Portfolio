@@ -3,7 +3,7 @@ gsap.config({
   trialWarn: false,
 });
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, SplitText);
 
 const body = document.body;
 const select = (e) => document.querySelector(e);
@@ -249,6 +249,7 @@ barba.hooks.enter(() => {
 // scroll to the top of the page
 barba.hooks.afterEnter(() => {
     window.scrollTo(0, 0);
+     initScrolltriggerAnimations();
 });
 
 barba.init({
@@ -317,12 +318,13 @@ function initSmoothScroll(container) {
 
     window.addEventListener("resize", () => {
     scroll.update();
-    ScrollTrigger.refresh();
+     ScrollTrigger.refresh();
     });
 
-    ScrollTrigger.addEventListener("refresh", () => scroll.update());
+     ScrollTrigger.addEventListener("refresh", () => scroll.update());
 
     ScrollTrigger.refresh();
+   
 }
 }
 
@@ -343,6 +345,7 @@ initScrolltriggerAnimations();
 initTimeZone();
 initMagneticButtons();
 initWindowInnerheight();
+initSplitText();
 }
 
 /**
@@ -471,6 +474,18 @@ function initTimeZone() {
 }
 
 /**
+ * GSAP Split Text
+ */
+function initSplitText() {
+
+    var splitWord = new SplitText(".split-words", {
+        type: "words",
+        wordsClass: "single-word"
+    });
+
+}
+
+/**
  * Scrolltrigger Animations Desktop + Mobile
  */
 function initScrolltriggerAnimations() {
@@ -498,5 +513,34 @@ ScrollTrigger.matchMedia({
     });
     },
 });
+
+
+if (document.querySelector('.animate-read')) {
+    // Scrolltrigger Animation : Example
+    $('.animate-read').each(function() {
+        let triggerElement = $(this);
+        let targetElement = $(this).find('.single-word');
+
+        let tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: triggerElement,
+                 scroller: "[data-scroll-container]",
+                start: "0% 95%",
+                end: "100% 55%",
+                scrub: 1,
+            }
+        });
+
+        tl.fromTo(targetElement, {
+            opacity: 0.1,
+        }, {
+            duration: 0.1,
+            opacity: 1,
+            stagger: 0.01,
+            ease: "none"
+        });
+    });
+}
+
 }
 

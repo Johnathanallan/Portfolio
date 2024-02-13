@@ -374,13 +374,20 @@
 
 /* ---------------------------------------------------------- About me --------------------------------------- */
 .about-me {
-  overflow: hidden;
-  z-index: 1;
+  background-color: transparent;
+  z-index: 2;
+  padding-top: calc(var(--section-padding) * 1.5);
 }
 
 .about-me .row {
-  border: 1px solid red;
+  justify-content: center;
 }
+
 .about-me .flex-col {
+  max-width: calc(var(--title-size) * 9);
+  justify-content: center;
+}
+
+.about-me .flex-col h4 {
   text-align: center;
 }
