@@ -43,3 +43,19 @@ main.touch .main-wrap {
     position: relative;
   }
 }
+
+.gradient-circle {
+  --gradient-size: calc(var(--title-size) * 5);
+  width: var(--gradient-size);
+  height: var(--gradient-size);
+  background: radial-gradient(
+    circle,
+    var(--color-secondary) 0%,
+    rgba(var(--color-dark-rgb), 0) 66%
+  );
+  position: absolute;
+  opacity: 0.4;
+  pointer-events: none;
+  border-radius: 50%;
+  filter: blur(5vw);
+}

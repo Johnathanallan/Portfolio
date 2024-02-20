@@ -188,8 +188,11 @@
   align-self: flex-end; /* Aligns .social to the end vertically */
 }
 
-.mobile-nav-box .box-row-logo svg path {
-  fill: var(--color-dark);
+.mobile-nav-box .box-row .social .bg {
+  display: flex;
+  justify-content: flex-end; /* Aligns social icons to the end horizontally */
+  gap: 0.8rem;
+  align-self: flex-end; /* Aligns .social to the end vertically */
 }
 
 /* Nav Links */
@@ -209,6 +212,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  pointer-events: all;
+  cursor: pointer;
+  transition: var(--animation-smooth);
+}
+
+.mobile-nav-box .box-row .social .svg-bg:hover {
+  background-color: var(--color-light);
+  border: 1px solid var(--color-dark);
+}
+
+.mobile-nav-box .box-row .social .svg-bg:hover svg path {
+  fill: var(--color-dark);
 }
 
 /* Logo */
@@ -374,9 +389,10 @@
 
 /* ---------------------------------------------------------- About me --------------------------------------- */
 .about-me {
-  background-color: transparent;
   z-index: 2;
-  padding-top: calc(var(--section-padding) * 1.5);
+  padding-top: 0;
+  padding-bottom: 0;
+  position: relative;
 }
 
 .about-me .row {
@@ -384,10 +400,23 @@
 }
 
 .about-me .flex-col {
-  max-width: calc(var(--title-size) * 9);
   justify-content: center;
+  width: 60%;
+  text-align: center;
 }
 
-.about-me .flex-col h4 {
-  text-align: center;
+.gradient-circle-wrap {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+@media screen and (max-width: 900px) {
+  .about-me .flex-col {
+    width: 100%;
+  }
 }

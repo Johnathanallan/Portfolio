@@ -249,6 +249,7 @@ barba.hooks.enter(() => {
 // scroll to the top of the page
 barba.hooks.afterEnter(() => {
     window.scrollTo(0, 0);
+    //added this for scroll trigger animations because the scroll text wouldnt load without.
      initScrolltriggerAnimations();
 });
 
@@ -525,7 +526,7 @@ if (document.querySelector('.animate-read')) {
             scrollTrigger: {
                 trigger: triggerElement,
                  scroller: "[data-scroll-container]",
-                start: "0% 95%",
+                start: "0% 97%",
                 end: "100% 55%",
                 scrub: 1,
             }
