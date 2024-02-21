@@ -249,8 +249,7 @@ barba.hooks.enter(() => {
 // scroll to the top of the page
 barba.hooks.afterEnter(() => {
     window.scrollTo(0, 0);
-    //added this for scroll trigger animations because the scroll text wouldnt load without.
-     initScrolltriggerAnimations();
+    
 });
 
 barba.init({
@@ -341,12 +340,13 @@ return new Promise((done) => {
 
 function initScript() {
 select("body").classList.remove("is-loading");
+initWindowInnerheight();
 initBasicFunctions();
-initScrolltriggerAnimations();
 initTimeZone();
 initMagneticButtons();
-initWindowInnerheight();
 initSplitText();
+initScrollAnimations();
+initScrolltriggerAnimations();
 }
 
 /**
@@ -407,6 +407,7 @@ $(document).keydown(function (e) {
     }
     }
 });
+
 }
 
 /**
@@ -484,6 +485,64 @@ function initSplitText() {
         wordsClass: "single-word"
     });
 
+}
+
+function initScrollAnimations() {
+if (document.querySelector(".scroll-in")) {
+                // Scrolltrigger Animation : Count Up
+                $(".scroll-in").each(function (index) {
+                    let triggerElement = $(this);
+                    let targetElement = $(this).find(".count-up");
+
+                    let tl = gsap.timeline({
+                        scrollTrigger: {
+                            trigger: '.scroll-area',
+                            start: "0% 100%",
+                            end: "100% 0%",
+                            scroller: "[data-scroll-container]",
+                        }
+                    });
+                    tl.from(targetElement, {
+                        duration: 1.5,
+                        ease: Expo.easeOut,
+                        innerText: 0,
+                        roundProps: "innerText",
+                        onUpdate: function () {
+                            this.targets().forEach(target => {
+                                const val = gsap.getProperty(target, "innerText");
+                                target.innerText = numberWithCommas(val);
+                            });
+                        },
+                    }, "<");
+
+                    function numberWithCommas(n) {
+                        var parts = n.toString().split(".");
+                        return parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                    }
+                    /* COME IN FROM LEFT SIDE OF SCREEN
+                    tl.from(triggerElement, {
+                        duration: 1.5,
+                        opacity: 0,
+                        yPercent: 30,
+                        xPercent: -20, // move it 10% to the left initially
+                        ease: Expo.easeOut,
+                    }, "0") */
+
+                    tl.from(triggerElement, {
+                        duration: 1.8,
+                        opacity: 0,
+                        yPercent: 30,
+                        rotation: 0,  // rotate the element slightly
+                        transformOrigin: "left center", // set the pivot point to the left
+                        ease: Expo.easeOut,
+                    }, "0")
+                        .to(triggerElement, {
+                            duration: 0.75,
+                            xPercent: 0, // correct its position to be straight
+                            ease: Expo.easeOut,
+                        });
+                });
+            }
 }
 
 /**

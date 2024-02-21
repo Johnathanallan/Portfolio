@@ -59,3 +59,14 @@ main.touch .main-wrap {
   border-radius: 50%;
   filter: blur(5vw);
 }
+
+.span-lines.animate .span-line {
+    position: relative;
+    display: inline-flex;
+    overflow: hidden;
+}
+
+.span-lines.animate .span-line .span-line-inner {
+    position: relative;
+    display: block;
+}
